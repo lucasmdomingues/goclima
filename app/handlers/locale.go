@@ -33,6 +33,11 @@ func GetLocaleByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if r.FormValue("id") == "" {
+		log.Info(w, nil, "ID da cidade inválido.")
+		return
+	}
+
 	id, err := strconv.ParseInt(r.FormValue("id"), 10, 64)
 	if err != nil {
 		log.Error(w, err)
