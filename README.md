@@ -9,7 +9,7 @@ go get github.com/lucasmdomingues/goclima
 
 # Busca dados de cidade por ID.
 
-```
+´´´
 import (
 	"fmt"
 	"goclima"
@@ -27,7 +27,7 @@ func main() {
 
 	fmt.Println(locale)
 }
-```
+´´´
 
 # Busca dados de cidades por Nome e/ou Estado.
 
