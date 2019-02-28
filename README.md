@@ -73,7 +73,7 @@ func main() {
 }
 ```
 
-### Chuva climática por ID da cidade ou latitude e longitude.
+### Chuva climática por ID da cidade.
 
 ```go
 import (
