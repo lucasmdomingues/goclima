@@ -1,15 +1,14 @@
-# Instalação
+### Instalação
 
-
-``` 
+```go 
 go get github.com/lucasmdomingues/goclima
 ```
 
-# Como usar
+### Como usar
 
-# Busca dados de cidade por ID.
+### Busca dados de cidade por ID.
 
-´´´
+```go
 import (
 	"fmt"
 	"goclima"
@@ -27,21 +26,21 @@ func main() {
 
 	fmt.Println(locale)
 }
-´´´
+```
 
-# Busca dados de cidades por Nome e/ou Estado.
+### Busca dados de cidades por Nome e/ou Estado.
 
 ```
 
 ```
 
-# Chuva climática por ID da cidade ou latitude e longitude.
+### Chuva climática por ID da cidade ou latitude e longitude.
 
 ```
 
 ```
 
-# Tempo no momento por ID da cidade.
+### Tempo no momento por ID da cidade.
 
 ```
 
