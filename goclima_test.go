@@ -2,7 +2,7 @@ package goclima
 
 import "testing"
 
-const token = "8d600aefb4ff5b9ebbc08b907444d6a"
+const token = "TOKEN"
 
 func TestGetLocaleById(t *testing.T) {
 
