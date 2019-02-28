@@ -1,4 +1,4 @@
-### Instalação
+# Instalação
 
 ```go 
 go get github.com/lucasmdomingues/goclima
