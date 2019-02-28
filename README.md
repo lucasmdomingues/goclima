@@ -1,12 +1,11 @@
-Instalação
-=====
+# Instalação
+
 
 ``` 
 go get github.com/lucasmdomingues/goclima
 ```
 
-Como usar
-=====
+# Como usar
 
 # Busca dados de cidade por ID.
 
