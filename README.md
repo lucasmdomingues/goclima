@@ -30,19 +30,68 @@ func main() {
 
 ### Busca dados de cidades por Nome e/ou Estado.
 
-```
+```go
+import (
+	"fmt"
+	"goclima"
+)
 
-```
+func main() {
 
-### Chuva climática por ID da cidade ou latitude e longitude.
+	token := "TOKEN"
 
-```
+	locale, err := goclima.GetLocaleByNameState(token, "São Paulo","SP")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(locale)
+}
 
 ```
 
 ### Tempo no momento por ID da cidade.
 
+```go
+import (
+	"fmt"
+	"goclima"
+)
+
+func main() {
+
+	token := "TOKEN"
+
+	weather, err := goclima.GetWeather(token, 3477)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(weather)
+}
 ```
 
+### Chuva climática por ID da cidade ou latitude e longitude.
+
+```go
+import (
+	"fmt"
+	"goclima"
+)
+
+func main() {
+
+	token := "TOKEN"
+
+	climate, err := goclima.GetClimate(token, 3477)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(climate)
+}
 ```
 
