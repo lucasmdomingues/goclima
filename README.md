@@ -4,7 +4,7 @@
 go get github.com/lucasmdomingues/goclima
 ```
 
-# Como usar
+# Exemplos
 
 ### Busca dados de cidade por ID.
 
