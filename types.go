@@ -21,7 +21,7 @@ type ClimateRain struct {
 }
 
 type Locale struct {
-	ID      int    `json:"id"`
+	ID      int64  `json:"id"`
 	Name    string `json:"name"`
 	State   string `json:"state"`
 	Country string `json:"country"`
@@ -36,15 +36,15 @@ type Weather struct {
 }
 
 type WeatherData struct {
-	Temperature   int     `json:"temperature"`
-	WindDirection string  `json:"wind_direction"`
-	WindVelocity  float64 `json:"wind_velocity"`
-	Humidity      int     `json:"humidity"`
-	Condition     string  `json:"condition"`
-	Pressure      int     `json:"pressure"`
-	Icon          string  `json:"icon"`
-	Sensation     int     `json:"sensation"`
-	Date          string  `json:"date"`
+	Temperature   int64  `json:"temperature"`
+	WindDirection string `json:"wind_direction"`
+	WindVelocity  int64  `json:"wind_velocity"`
+	Humidity      int64  `json:"humidity"`
+	Condition     string `json:"condition"`
+	Pressure      int64  `json:"pressure"`
+	Icon          string `json:"icon"`
+	Sensation     int64  `json:"sensation"`
+	Date          string `json:"date"`
 }
 
 type ClimaTempoError struct {
