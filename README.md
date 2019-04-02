@@ -94,4 +94,9 @@ func main() {
 	fmt.Println(climate)
 }
 ```
+### TO DO
 
+* GeoreferencedForecast
+* History
+* Forecast
+* Index
