@@ -94,6 +94,9 @@ func main() {
 	fmt.Println(climate)
 }
 ```
+### Clima Tempo
+https://advisor.climatempo.com.br/
+
 ### TO DO
 
 * GeoreferencedForecast
