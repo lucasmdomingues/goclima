@@ -36,7 +36,7 @@ type Weather struct {
 }
 
 type WeatherData struct {
-	Temperature   int64   `json:"temperature"`
+	Temperature   float64 `json:"temperature"`
 	WindDirection string  `json:"wind_direction"`
 	WindVelocity  float64 `json:"wind_velocity"`
 	Humidity      float64 `json:"humidity"`
