@@ -11,7 +11,8 @@ go get github.com/lucasmdomingues/goclima
 ```go
 import (
 	"fmt"
-	"goclima"
+
+	"github.com/lucasmdomingues/goclima"
 )
 
 func main() {
