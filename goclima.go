@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const CLIMATEMPO_PREFIX = "http://apiadvisor.climatempo.com.br"
+const apiClimaTempoPrefix = "http://apiadvisor.climatempo.com.br/api/v1"
 
 func GetLocaleByID(token string, id int64) (*Locale, error) {
 
-	url := fmt.Sprintf("%s/api/v1/locale/city/%d?token=%s", CLIMATEMPO_PREFIX, id, token)
+	url := fmt.Sprintf("%s/locale/city/%d?token=%s", apiClimaTempoPrefix, id, token)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -55,11 +55,11 @@ func GetLocaleByNameState(token string, name, state string) ([]*Locale, error) {
 	name = strings.Replace(name, " ", "+", len(name))
 
 	if name == "" {
-		url = fmt.Sprintf("%s/api/v1/locale/city?state=%s&token=%s", CLIMATEMPO_PREFIX, state, token)
+		url = fmt.Sprintf("%s/locale/city?state=%s&token=%s", apiClimaTempoPrefix, state, token)
 	} else if state == "" {
-		url = fmt.Sprintf("%s/api/v1/locale/city?name=%s&token=%s", CLIMATEMPO_PREFIX, name, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&token=%s", apiClimaTempoPrefix, name, token)
 	} else {
-		url = fmt.Sprintf("%s/api/v1/locale/city?name=%s&state=%s&token=%s", CLIMATEMPO_PREFIX, name, state, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&state=%s&token=%s", apiClimaTempoPrefix, name, state, token)
 	}
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -98,7 +98,7 @@ func GetLocaleByNameState(token string, name, state string) ([]*Locale, error) {
 
 func GetWeather(token string, id int64) (*Weather, error) {
 
-	url := fmt.Sprintf("%s/api/v1/weather/locale/%d/current?token=%s", CLIMATEMPO_PREFIX, id, token)
+	url := fmt.Sprintf("%s/weather/locale/%d/current?token=%s", apiClimaTempoPrefix, id, token)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -136,7 +136,7 @@ func GetWeather(token string, id int64) (*Weather, error) {
 
 func GetClimate(token string, id int64) (*Climate, error) {
 
-	url := fmt.Sprintf("%s/api/v1/climate/rain/locale/%d?token=%s", CLIMATEMPO_PREFIX, id, token)
+	url := fmt.Sprintf("%s/climate/rain/locale/%d?token=%s", apiClimaTempoPrefix, id, token)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
