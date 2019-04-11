@@ -11,7 +11,8 @@ go get github.com/lucasmdomingues/goclima
 ```go
 import (
 	"fmt"
-	"goclima"
+
+	"github.com/lucasmdomingues/goclima"
 )
 
 func main() {
@@ -94,6 +95,9 @@ func main() {
 	fmt.Println(climate)
 }
 ```
+### Clima Tempo
+https://advisor.climatempo.com.br/
+
 ### TO DO
 
 * GeoreferencedForecast
