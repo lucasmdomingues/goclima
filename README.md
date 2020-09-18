@@ -1,12 +1,12 @@
-# Instalação
+# Installation
 
 ```go 
 go get github.com/lucasmdomingues/goclima
 ```
 
-# Exemplos
+# Examples
 
-### Busca dados de cidade por ID.
+### Search city data by ID.
 
 ```go
 import (
@@ -16,20 +16,16 @@ import (
 )
 
 func main() {
-
 	token := "TOKEN"
 
 	locale, err := goclima.GetLocaleByID(token, 3477)
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
-
-	fmt.Println(locale)
 }
 ```
 
-### Busca dados de cidades por Nome e/ou Estado.
+### Search city data by Name and/or State.
 
 ```go
 import (
@@ -38,21 +34,17 @@ import (
 )
 
 func main() {
-
 	token := "TOKEN"
 
 	locale, err := goclima.GetLocaleByNameState(token, "São Paulo","SP")
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
-
-	fmt.Println(locale)
 }
 
 ```
 
-### Tempo no momento por ID da cidade.
+### Currently time by city ID.
 
 ```go
 import (
@@ -61,20 +53,16 @@ import (
 )
 
 func main() {
-
 	token := "TOKEN"
 
 	weather, err := goclima.GetWeather(token, 3477)
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
-
-	fmt.Println(weather)
 }
 ```
 
-### Chuva climática por ID da cidade.
+### Climatic rain by city ID.
 
 ```go
 import (
@@ -83,16 +71,12 @@ import (
 )
 
 func main() {
-
 	token := "TOKEN"
 
 	climate, err := goclima.GetClimate(token, 3477)
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
-
-	fmt.Println(climate)
 }
 ```
 ### Clima Tempo
