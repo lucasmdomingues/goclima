@@ -8,22 +8,12 @@ import (
 	"strings"
 )
 
-const apiClimaTempoPrefix = "http://apiadvisor.climatempo.com.br/api/v1"
+const URL = "http://apiadvisor.climatempo.com.br/api/v1"
 
 func GetLocaleByID(token string, id int64) (*Locale, error) {
+	url := fmt.Sprintf("%s/locale/city/%d?token=%s", URL, id, token)
 
-	url := fmt.Sprintf("%s/locale/city/%d?token=%s", apiClimaTempoPrefix, id, token)
-
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-type", "application/json")
-
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -34,7 +24,7 @@ func GetLocaleByID(token string, id int64) (*Locale, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return nil, newClimaTempoError(body)
 	}
 
@@ -48,30 +38,20 @@ func GetLocaleByID(token string, id int64) (*Locale, error) {
 	return locale, nil
 }
 
-func GetLocaleByNameState(token string, name, state string) ([]*Locale, error) {
-
+func GetLocaleByNameState(token, name, state string) ([]*Locale, error) {
 	var url string
 
 	name = strings.Replace(name, " ", "+", len(name))
 
 	if name == "" {
-		url = fmt.Sprintf("%s/locale/city?state=%s&token=%s", apiClimaTempoPrefix, state, token)
+		url = fmt.Sprintf("%s/locale/city?state=%s&token=%s", URL, state, token)
 	} else if state == "" {
-		url = fmt.Sprintf("%s/locale/city?name=%s&token=%s", apiClimaTempoPrefix, name, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&token=%s", URL, name, token)
 	} else {
-		url = fmt.Sprintf("%s/locale/city?name=%s&state=%s&token=%s", apiClimaTempoPrefix, name, state, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&state=%s&token=%s", URL, name, state, token)
 	}
 
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-type", "application/json")
-
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +62,7 @@ func GetLocaleByNameState(token string, name, state string) ([]*Locale, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return nil, newClimaTempoError(body)
 	}
 
@@ -97,19 +77,9 @@ func GetLocaleByNameState(token string, name, state string) ([]*Locale, error) {
 }
 
 func GetWeather(token string, id int64) (*Weather, error) {
+	url := fmt.Sprintf("%s/weather/locale/%d/current?token=%s", URL, id, token)
 
-	url := fmt.Sprintf("%s/weather/locale/%d/current?token=%s", apiClimaTempoPrefix, id, token)
-
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-type", "application/json")
-
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -120,7 +90,7 @@ func GetWeather(token string, id int64) (*Weather, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return nil, newClimaTempoError(body)
 	}
 
@@ -135,19 +105,9 @@ func GetWeather(token string, id int64) (*Weather, error) {
 }
 
 func GetClimate(token string, id int64) (*Climate, error) {
+	url := fmt.Sprintf("%s/climate/rain/locale/%d?token=%s", URL, id, token)
 
-	url := fmt.Sprintf("%s/climate/rain/locale/%d?token=%s", apiClimaTempoPrefix, id, token)
-
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set("Content-type", "application/json")
-
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
@@ -158,7 +118,7 @@ func GetClimate(token string, id int64) (*Climate, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		return nil, newClimaTempoError(body)
 	}
 
@@ -172,11 +132,10 @@ func GetClimate(token string, id int64) (*Climate, error) {
 	return climate, nil
 }
 
-func newClimaTempoError(error []byte) error {
-
+func newClimaTempoError(errBytes []byte) error {
 	var climaTempoError *ClimaTempoError
 
-	err := json.Unmarshal(error, &climaTempoError)
+	err := json.Unmarshal(errBytes, &climaTempoError)
 	if err != nil {
 		return err
 	}

@@ -5,7 +5,6 @@ import "testing"
 const token = "TOKEN"
 
 func TestGetLocaleById(t *testing.T) {
-
 	tests := []struct {
 		id   int64
 		name string
@@ -15,7 +14,6 @@ func TestGetLocaleById(t *testing.T) {
 	}
 
 	for _, test := range tests {
-
 		locale, err := GetLocaleByID(token, test.id)
 		if err != nil {
 			t.Error(err)
@@ -24,12 +22,12 @@ func TestGetLocaleById(t *testing.T) {
 
 		if locale.Name != test.name {
 			t.Errorf("Locale name is incorrect, got: %s, want: %s.", locale.Name, test.name)
+			return
 		}
 	}
 }
 
 func TestGetLocaleByNameState(t *testing.T) {
-
 	tests := []struct {
 		name   string
 		state  string
@@ -50,13 +48,13 @@ func TestGetLocaleByNameState(t *testing.T) {
 		for _, locale := range locales {
 			if locale.Name != test.result {
 				t.Errorf("Locale name is incorrect, got: %s, want: %s.", locale.Name, test.result)
+				return
 			}
 		}
 	}
 }
 
 func TestGetWeather(t *testing.T) {
-
 	tests := []struct {
 		id int64
 	}{
@@ -74,7 +72,6 @@ func TestGetWeather(t *testing.T) {
 }
 
 func TestGetClimate(t *testing.T) {
-
 	tests := []struct {
 		id int64
 	}{
@@ -86,6 +83,7 @@ func TestGetClimate(t *testing.T) {
 		_, err := GetClimate(token, test.id)
 		if err != nil {
 			t.Error(err)
+			return
 		}
 	}
 }
