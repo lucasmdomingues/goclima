@@ -30,7 +30,7 @@ func main() {
 ```go
 import (
 	"fmt"
-	"goclima"
+	"github.com/lucasmdomingues/goclima"
 )
 
 func main() {
@@ -49,7 +49,7 @@ func main() {
 ```go
 import (
 	"fmt"
-	"goclima"
+	"github.com/lucasmdomingues/goclima"
 )
 
 func main() {
@@ -67,7 +67,7 @@ func main() {
 ```go
 import (
 	"fmt"
-	"goclima"
+	"github.com/lucasmdomingues/goclima"
 )
 
 func main() {
