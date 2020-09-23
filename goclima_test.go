@@ -2,8 +2,6 @@ package goclima
 
 import "testing"
 
-const token = "TOKEN"
-
 func TestGetLocaleById(t *testing.T) {
 	tests := []struct {
 		id   int64
@@ -13,8 +11,10 @@ func TestGetLocaleById(t *testing.T) {
 		{5959, "Rio de Janeiro"},
 	}
 
+	service := NewService("TOKEN")
+
 	for _, test := range tests {
-		locale, err := GetLocaleByID(token, test.id)
+		locale, err := service.SearchByID(test.id)
 		if err != nil {
 			t.Error(err)
 			return
@@ -37,9 +37,10 @@ func TestGetLocaleByNameState(t *testing.T) {
 		{"São Paulo", "SP", "São Paulo"},
 	}
 
-	for _, test := range tests {
+	service := NewService("TOKEN")
 
-		locales, err := GetLocaleByNameState(token, test.name, test.state)
+	for _, test := range tests {
+		locales, err := service.SearchByNameState(test.name, test.state)
 		if err != nil {
 			t.Error(err)
 			return
@@ -62,8 +63,10 @@ func TestGetWeather(t *testing.T) {
 		{5959},
 	}
 
+	service := NewService("TOKEN")
+
 	for _, test := range tests {
-		_, err := GetWeather(token, test.id)
+		_, err := service.GetWeather(test.id)
 		if err != nil {
 			t.Error(err)
 			return
@@ -79,8 +82,10 @@ func TestGetClimate(t *testing.T) {
 		{5959},
 	}
 
+	service := NewService("TOKEN")
+
 	for _, test := range tests {
-		_, err := GetClimate(token, test.id)
+		_, err := service.GetClimate(test.id)
 		if err != nil {
 			t.Error(err)
 			return

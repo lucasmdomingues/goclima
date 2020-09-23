@@ -16,9 +16,9 @@ import (
 )
 
 func main() {
-	token := "TOKEN"
+	service := goclima.NewService("TOKEN")
 
-	locale, err := goclima.GetLocaleByID(token, 3477)
+	locale, err := service.SearchByID(3477)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,9 +34,9 @@ import (
 )
 
 func main() {
-	token := "TOKEN"
+	service := goclima.NewService("TOKEN")
 
-	locale, err := goclima.GetLocaleByNameState(token, "São Paulo","SP")
+	locale, err := service.SearchByNameState("São Paulo","SP")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,9 +53,9 @@ import (
 )
 
 func main() {
-	token := "TOKEN"
+	service := goclima.NewService("TOKEN")
 
-	weather, err := goclima.GetWeather(token, 3477)
+	weather, err := service.GetWeather(3477)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,9 +71,9 @@ import (
 )
 
 func main() {
-	token := "TOKEN"
+	service := goclima.NewService("TOKEN")
 
-	climate, err := goclima.GetClimate(token, 3477)
+	climate, err := service.GetClimate(3477)
 	if err != nil {
 		log.Fatal(err)
 	}

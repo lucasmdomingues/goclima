@@ -10,8 +10,25 @@ import (
 
 const URL = "http://apiadvisor.climatempo.com.br/api/v1"
 
-func GetLocaleByID(token string, id int64) (*Locale, error) {
-	url := fmt.Sprintf("%s/locale/city/%d?token=%s", URL, id, token)
+type service struct {
+	Token string
+}
+
+type Service interface {
+	SearchByID(id int64) (*Locale, error)
+	SearchByNameState(name, state string) ([]*Locale, error)
+	GetWeather(id int64) (*Weather, error)
+	GetClimate(id int64) (*Climate, error)
+}
+
+func NewService(token string) Service {
+	return &service{
+		Token: token,
+	}
+}
+
+func (s *service) SearchByID(id int64) (*Locale, error) {
+	url := fmt.Sprintf("%s/locale/city/%d?token=%s", URL, id, s.Token)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -38,17 +55,17 @@ func GetLocaleByID(token string, id int64) (*Locale, error) {
 	return locale, nil
 }
 
-func GetLocaleByNameState(token, name, state string) ([]*Locale, error) {
+func (s *service) SearchByNameState(name, state string) ([]*Locale, error) {
 	var url string
 
 	name = strings.Replace(name, " ", "+", len(name))
 
 	if name == "" {
-		url = fmt.Sprintf("%s/locale/city?state=%s&token=%s", URL, state, token)
+		url = fmt.Sprintf("%s/locale/city?state=%s&token=%s", URL, state, s.Token)
 	} else if state == "" {
-		url = fmt.Sprintf("%s/locale/city?name=%s&token=%s", URL, name, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&token=%s", URL, name, s.Token)
 	} else {
-		url = fmt.Sprintf("%s/locale/city?name=%s&state=%s&token=%s", URL, name, state, token)
+		url = fmt.Sprintf("%s/locale/city?name=%s&state=%s&token=%s", URL, name, state, s.Token)
 	}
 
 	resp, err := http.Get(url)
@@ -76,8 +93,8 @@ func GetLocaleByNameState(token, name, state string) ([]*Locale, error) {
 	return locales, nil
 }
 
-func GetWeather(token string, id int64) (*Weather, error) {
-	url := fmt.Sprintf("%s/weather/locale/%d/current?token=%s", URL, id, token)
+func (s *service) GetWeather(id int64) (*Weather, error) {
+	url := fmt.Sprintf("%s/weather/locale/%d/current?token=%s", URL, id, s.Token)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -104,8 +121,8 @@ func GetWeather(token string, id int64) (*Weather, error) {
 	return weather, nil
 }
 
-func GetClimate(token string, id int64) (*Climate, error) {
-	url := fmt.Sprintf("%s/climate/rain/locale/%d?token=%s", URL, id, token)
+func (s *service) GetClimate(id int64) (*Climate, error) {
+	url := fmt.Sprintf("%s/climate/rain/locale/%d?token=%s", URL, id, s.Token)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -140,5 +157,5 @@ func newClimaTempoError(errBytes []byte) error {
 		return err
 	}
 
-	return fmt.Errorf("%s", climaTempoError.Detail)
+	return fmt.Errorf("Oops, %s", climaTempoError.Detail)
 }
