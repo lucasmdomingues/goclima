@@ -4,87 +4,27 @@
 go get github.com/lucasmdomingues/goclima
 ```
 
-# Examples
-
-### Search city data by ID.
-
-```go
-import (
-	"fmt"
-
-	"github.com/lucasmdomingues/goclima"
-)
-
-func main() {
-	service := goclima.NewService("TOKEN")
-
-	locale, err := service.SearchByID(3477)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-```
-
-### Search city data by Name and/or State.
-
-```go
-import (
-	"fmt"
-	"github.com/lucasmdomingues/goclima"
-)
-
-func main() {
-	service := goclima.NewService("TOKEN")
-
-	locale, err := service.SearchByNameState("São Paulo","SP")
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-```
-
-### Currently time by city ID.
-
-```go
-import (
-	"fmt"
-	"github.com/lucasmdomingues/goclima"
-)
-
-func main() {
-	service := goclima.NewService("TOKEN")
-
-	weather, err := service.GetWeather(3477)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-```
-
-### Climatic rain by city ID.
-
-```go
-import (
-	"fmt"
-	"github.com/lucasmdomingues/goclima"
-)
-
-func main() {
-	service := goclima.NewService("TOKEN")
-
-	climate, err := service.GetClimate(3477)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-```
-### Clima Tempo
+## Clima Tempo
 https://advisor.climatempo.com.br/
 
-### TO DO
+## Content
 
-* GeoreferencedForecast
-* History
-* Forecast
-* Index
+### Locale
+
+* Search city by ID
+* Search city by latitude and longitude
+* Search city by name and/or state/province and country
+
+### Weather
+
+* Current weather by city's ID.
+
+### Climate 
+
+* Climate rain for city's Id or latitude and longitude
+* Climate temperature by city's Id or latitude and longitude
+
+### UserTokenManagement
+
+* Get registered city Id's for token
+* Register city's Id to token.
